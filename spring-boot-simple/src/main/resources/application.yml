@@ -1,3 +1,9 @@
+server: 
+  port: 8090
+  context-path: /mydemo
+  tomcat:
+    uri-encoding: UTF-8
+
 spring: 
   datasource: 
     url: jdbc:mysql://localhost:3306/springbootjpasimple?useUnicode=true&characterEncoding=utf8
@@ -5,13 +11,13 @@ spring:
     password: root
     driver-class-name: com.mysql.jdbc.Driver
   jpa:
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect  #\u4E0D\u52A0\u8FD9\u53E5\u5219\u9ED8\u8BA4\u4E3Amyisam\u5F15\u64CE
-    ##\u8FD0\u884C\u65F6\u8F93\u51FAjpa\u6267\u884C\u7684sql\u8BED\u53E5
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect  #不加这句则默认为myisam引擎
+    ##运行时输出jpa执行的sql语句
     show-sql: true
-    ## spring-boot-starter-data-jpa\u81EA\u52A8\u6620\u5C04\u521B\u5EFA\u8868\u52A8\u4F5C \u914D\u7F6E: \u6709\u8868\u66F4\u65B0,\u65E0\u8868\u521B\u5EFA
+    ## spring-boot-starter-data-jpa自动映射创建表动作 配置: 有表更新,无表创建
     hibernate:
       ddl-auto: update
-  #\u96C6\u4E2D\u89E3\u51B3\u5404\u79CD\u7F16\u7801\u95EE\u9898
+  #集中解决各种编码问题
   banner:
     charset: UTF-8
   http:
@@ -21,13 +27,13 @@ spring:
       force: true
   messages:
     encoding: UTF-8
-  #     spring mvc \u89C6\u56FE\u89E3\u6790\u5668
+  #     spring mvc 视图解析器
   mvc:
     view:
       prefix: /
       suffix: .html
-  # \u65F6\u95F4\u683C\u5F0F\u5316
+  # 时间格式化
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
-    # \u65F6\u533A\u8BBE\u7F6E
+    # 时区设置
     time-zone: GMT+8
